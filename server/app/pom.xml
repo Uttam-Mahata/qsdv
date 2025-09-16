@@ -64,10 +64,14 @@
 			<version>1.78.1</version>
 		</dependency>
 		<!-- Open Quantum Safe liboqs-java -->
+		<!-- Note: liboqs-java requires manual building and installation -->
+		<!-- See: https://github.com/open-quantum-safe/liboqs-java -->
 		<dependency>
 			<groupId>org.openquantumsafe</groupId>
 			<artifactId>liboqs-java</artifactId>
 			<version>0.1.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/liboqs-java.jar</systemPath>
 		</dependency>
 		<!-- Jakarta Annotations for @PostConstruct -->
 		<dependency>
