@@ -30,6 +30,14 @@ public class Document {
     @Column(name = "encrypted_data", nullable = false)
     private byte[] encryptedData;
     
+    @Lob
+    @Column(name = "encapsulated_key", nullable = false)
+    private byte[] encapsulatedKey;
+    
+    @Lob
+    @Column(name = "encryption_iv", nullable = false)
+    private byte[] encryptionIv;
+    
     @Column(name = "encryption_algorithm", nullable = false)
     private String encryptionAlgorithm;
     
@@ -58,7 +66,8 @@ public class Document {
     }
     
     public Document(String filename, String originalFilename, String contentType, 
-                   Long fileSize, byte[] encryptedData, String encryptionAlgorithm, 
+                   Long fileSize, byte[] encryptedData, byte[] encapsulatedKey, 
+                   byte[] encryptionIv, String encryptionAlgorithm, 
                    String keyVersion, User owner) {
         this();
         this.filename = filename;
@@ -66,6 +75,8 @@ public class Document {
         this.contentType = contentType;
         this.fileSize = fileSize;
         this.encryptedData = encryptedData;
+        this.encapsulatedKey = encapsulatedKey;
+        this.encryptionIv = encryptionIv;
         this.encryptionAlgorithm = encryptionAlgorithm;
         this.keyVersion = keyVersion;
         this.owner = owner;
@@ -98,6 +109,12 @@ public class Document {
             this.encryptedSize = (long) encryptedData.length;
         }
     }
+    
+    public byte[] getEncapsulatedKey() { return encapsulatedKey; }
+    public void setEncapsulatedKey(byte[] encapsulatedKey) { this.encapsulatedKey = encapsulatedKey; }
+    
+    public byte[] getEncryptionIv() { return encryptionIv; }
+    public void setEncryptionIv(byte[] encryptionIv) { this.encryptionIv = encryptionIv; }
     
     public String getEncryptionAlgorithm() { return encryptionAlgorithm; }
     public void setEncryptionAlgorithm(String encryptionAlgorithm) { this.encryptionAlgorithm = encryptionAlgorithm; }
